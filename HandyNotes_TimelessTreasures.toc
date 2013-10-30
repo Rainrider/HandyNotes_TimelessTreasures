@@ -1,0 +1,11 @@
+## Interface: 50400
+## Title: HandyNotes_TimelessTreasures
+## Notes: Displays the locations of the chests for the Treasure, Treasure Everywhere achievement
+## Author: Rainrider
+## Version: 1
+## SavedVariables: HandyNotes_TimelessTreasuresDB
+## RequiredDeps: HandyNotes
+
+## X-Category: Map & Minimap
+
+core.lua

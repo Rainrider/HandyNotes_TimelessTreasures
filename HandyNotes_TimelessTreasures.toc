@@ -8,4 +8,5 @@
 
 ## X-Category: Map & Minimap
 
+localization.lua
 core.lua

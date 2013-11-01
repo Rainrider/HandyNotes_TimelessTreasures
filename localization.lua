@@ -10,7 +10,6 @@ local default = {
 	["Skull-Covered Chest"] = "Skull-Covered Chest",
 	["Blazing Chest"] = "Blazing Chest",
 	-- notes
-	["Note: "] = "Note: ",
 	["On a treestump"] = "On a treestump",
 	["On the ramp"] = "On the ramp",
 	["In the slump scraps under the broken bridge"] = "In the slump scraps under the broken bridge",

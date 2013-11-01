@@ -23,6 +23,14 @@ local blazing = L["Blazing Chest"]
 
 local default_icon = (select(10, GetAchievementInfo(8729))) or "Interface\\ICONS\\inv_misc_coin_01"
 
+local criteriaIndex = {
+	[moss] = 1,
+	[sturdy] = 4,
+	[smoldering] = 5,
+	[skull] = 2,
+	[blazing] = 3,
+}
+
 -- http://www.wowhead.com/achievement=8729/treasure-treasure-everywhere
 -- mapFiles 5th or 1st return of GetMapInfo()
 -- coord 1st and 2nd return of GetPlayerMapPosition("player") times 10,000
@@ -96,6 +104,7 @@ function TimelessTreasures:OnEnter(mapFile, coord)
 	if info.note then
 		tooltip:AddLine(format("|cff00FF00%s|r %s", NOTE_COLON, info.note), 1, 1, 1, true)
 	end
+	tooltip:AddLine(format("|cff00FF00%s:|r %s", L["Completed"], (select(9, GetAchievementCriteriaInfo(8729, criteriaIndex[info.type])))), 1, 1, 1)
 	tooltip:Show()
 end
 

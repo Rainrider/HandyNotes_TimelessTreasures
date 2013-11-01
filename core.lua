@@ -4,7 +4,14 @@ local L = TimelessTreasures.L
 
 -- our db and defaults
 local db
-local defaults = { profile = { completed = false, icon_scale = 1.4, icon_alpha = 0.8 } }
+local defaults = {
+	profile = {
+		completed = false,
+		icon_scale = 1.4,
+		icon_alpha = 0.8,
+		show_moss = true,
+	}
+}
 
 local points = TimelessTreasures.points
 
@@ -179,7 +186,8 @@ local function iter(t, prestate)
 	local state, value = next(t, prestate)
 
 	while state do -- have we reached the end of this zone?
-		if value and (db.completed or not IsQuestFlaggedCompleted(value.quest)) then
+		if value and (db.completed
+			or ((value.type ~= moss or (value.type == moss and db.show_moss)) and not IsQuestFlaggedCompleted(value.quest))) then
 			return state, nil, default_icon, db.icon_scale, db.icon_alpha
 		end
 
@@ -207,17 +215,25 @@ local options = {
 	end,
 	args = {
 		desc = {
-			name = L["These settings control the look and feel of the icon."],
 			type = "description",
+			name = L["These settings control the visibility and the look of the icons."],
 			order = 1,
 		},
 		completed = {
+			type = "toggle",
 			name = L["Show completed"],
 			desc = L["Show icons for treasures you have already got."],
-			type = "toggle",
-			width = "full",
 			arg = "completed",
+			width = "full",
 			order = 2,
+		},
+		show_moss = {
+			type = "toggle",
+			name = L["Show Moss-Covered Chests"],
+			desc = L["Show not completed Moss-Covered Chests"],
+			arg = "show_moss",
+			width = "full",
+			order = 3,
 		},
 		icon_scale = {
 			type = "range",
@@ -225,7 +241,7 @@ local options = {
 			desc = L["Change the size of the icons."],
 			min = 0.25, max = 2, step = 0.01,
 			arg = "icon_scale",
-			order = 3,
+			order = 10,
 		},
 		icon_alpha = {
 			type = "range",
@@ -233,7 +249,7 @@ local options = {
 			desc = L["Change the transparency of the icons."],
 			min = 0, max = 1, step = 0.01,
 			arg = "icon_alpha",
-			order = 4,
+			order = 10,
 		},
 	},
 }

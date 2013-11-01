@@ -14,7 +14,7 @@ local smoldering = L["Smoldering Chest"]
 local skull = L["Skull-Covered Chest"]
 local blazing = L["Blazing Chest"]
 
-local default_icon = select(10, GetAchievementInfo(8729))
+local default_icon = (select(10, GetAchievementInfo(8729))) or "Interface\\ICONS\\inv_misc_coin_01"
 
 -- http://www.wowhead.com/achievement=8729/treasure-treasure-everywhere
 -- mapFiles 5th or 1st return of GetMapInfo()

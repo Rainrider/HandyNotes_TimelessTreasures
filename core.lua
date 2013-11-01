@@ -86,7 +86,9 @@ function TimelessTreasures:OnEnter(mapFile, coord)
 	end
 	local info = points[mapFile][coord]
 	tooltip:SetText(info.type)
-	tooltip:AddLine(L["Note: "] .. (info.note or ""), 1, 1, 1, true)
+	if info.note then
+		tooltip:AddLine(format("|cff00FF00%s|r %s", NOTE_COLON, info.note), 1, 1, 1, true)
+	end
 	tooltip:Show()
 end
 

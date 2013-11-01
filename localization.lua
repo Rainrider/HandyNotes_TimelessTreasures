@@ -15,6 +15,8 @@ local default = {
 	["On the top of the cliff. Use the Highwind Albatross"] = "On the top of the cliff. Use the Highwind Albatross",
 	["Inside the Mysterious Den. Use one of objects from Legends of the Past"] = "Inside the Mysterious Den. Use one of objects from \"Legends of the Past\" to enter.",
 	["Inside Cavern of Lost Spirits (entrance at 43.2, 41.3)"] = "Inside Cavern of Lost Spirits (entrance at 43.2, 41.3)",
+	-- tooltip
+	["Completed"] = "Completed",
 	-- buttons
 	["Create waypoint"] = "Create waypoint",
 	-- options
@@ -44,6 +46,8 @@ local localization = {
 		["On the top of the cliff. Use the Highwind Albatross"] = "Auf der Klippenspitze. Benutze den Böenalbatros.",
 		["Inside the Mysterious Den. Use one of objects from Legends of the Past"] = "In der Geheimnisvolle Höhle. Benutze einen der Gegenstände für \"Legende vergangener Zeiten\" um reinzukommen.",
 		["Inside Cavern of Lost Spirits (entrance at 43.2, 41.3)"] = "in der Höhle der Verlorenen Geister (Eingang am 43.2, 41.3)",
+		-- tooltip
+		["Completed"] = "Abgeschlossen",
 		-- buttons
 		["Create waypoint"] = "Wegpunkt erstellen",
 		-- options

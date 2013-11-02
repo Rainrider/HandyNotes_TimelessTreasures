@@ -90,6 +90,18 @@ points["CavernofLostSpirits"] = {
 	[62903480] = {type = skull, quest = 33203},
 }
 
+local ColorGradient = function(a, b, r1, g1, b1, r2, g2, b2, r3, g3, b3)
+	if a <= 0 or b == 0 then
+		return r1, g1, b1
+	elseif a >= b then
+		return r3, g3, b3
+	else
+		local segment, relperc = math.modf((a / b) * 2)
+		r1, g1, b1, r2, g2, b2 = select(segment * 3 + 1, r1, g1, b1, r2, g2, b2, r3, g3, b3)
+		return r1 + (r2 - r1) * relperc, g1 + (g2 - g1) * relperc, b1 + (b2 - b1) * relperc
+	end
+end
+
 -- HandyNotes handlers
 function TimelessTreasures:OnEnter(mapFile, coord)
 	local tooltip = self:GetParent() == WorldMapButton and WorldMapTooltip or GameTooltip
@@ -104,7 +116,9 @@ function TimelessTreasures:OnEnter(mapFile, coord)
 	if info.note then
 		tooltip:AddLine(format("|cff00FF00%s|r %s", NOTE_COLON, info.note), 1, 1, 1, true)
 	end
-	tooltip:AddLine(format("|cff00FF00%s:|r %s", L["Completed"], (select(9, GetAchievementCriteriaInfo(8729, criteriaIndex[info.type])))), 1, 1, 1)
+	local quantity, requiredQuantity = select(4, GetAchievementCriteriaInfo(8729, criteriaIndex[info.type]))
+	local r, g, b = ColorGradient(quantity, requiredQuantity, 1, 0, 0, 1, 1, 0, 0, 1, 0)
+	tooltip:AddLine(format("|cff00FF00%s:|r %d/%d", L["Completed"], quantity, requiredQuantity), r, g, b)
 	tooltip:Show()
 end
 

@@ -21,7 +21,7 @@ local default = {
 	["Create waypoint"] = "Create waypoint",
 	-- options
 	["Timeless Treasures locations."] = "Locations of the chests for \"Treasure, Treasure Everywhere\".",
-	["These settings control the visibility and the look of the icons."] = "These settings control the visibility and the look of the icons.",
+	["These settings control the visibility and the look of the icons."] = "These settings control the visibility and the look of the icons.\n\n",
 	["Show completed"] = "Show completed",
 	["Show icons for treasures you have already got."] = "Show icons for chests you have already opened.",
 	["Show Moss-Covered Chests"] = "Show Moss-Covered Chests",
@@ -30,6 +30,8 @@ local default = {
 	["Change the size of the icons."] = "Change the size of the icons.",
 	["Icon Alpha"] = "Icon Alpha",
 	["Change the transparency of the icons."] = "Change the transparency of the icons.",
+	["These settings allow you to change the idividual chest icons."] = "\n\nThese settings allow you to change the idividual chest icons.\n\n",
+	["Change Icon"] = "Enter the full texture path \ni.e. |cffFFFF00Interface\\ICONS\\inv_box_01|r",
 }
 
 local localization = {
@@ -52,7 +54,7 @@ local localization = {
 		["Create waypoint"] = "Wegpunkt erstellen",
 		-- options
 		["Timeless Treasures locations."] = "Orte der Truhen für \"Meine Schätze!\".",
-		["These settings control the visibility and the look of the icons."] = "Diese Einstellungen bestimmen die Sichtbarkeit und das Aussehen der Symbole.",
+		["These settings control the visibility and the look of the icons."] = "Diese Einstellungen bestimmen die Sichtbarkeit und das Aussehen der Symbole.\n\n",
 		["Show completed"] = "Abgeschlossene anzeigen",
 		["Show icons for treasures you have already got."] = "Zeigt die Truhen an, die bereits aufgemacht worden sind.",
 		["Show Moss-Covered Chests"] = "Mossüberwucherte Truhen anzeigen",
@@ -61,6 +63,8 @@ local localization = {
 		["Change the size of the icons."] = "Ändert die Symbolgröße.",
 		["Icon Alpha"] = "Symboltransparenz",
 		["Change the transparency of the icons."] = "Ändert die Symboltransparenz.",
+		["These settings allow you to change the idividual chest icons."] = "\n\nDiese Einstellungen bewirken eine Änderung der jeweiligen Truhensymbole.\n\n",
+		["Change Icon"] = "Gebt den vollständigen Pfad für die Textur an \nz.B. |cffFFFF00Interface\\ICONS\\inv_box_01|r",
 	},
 }
 

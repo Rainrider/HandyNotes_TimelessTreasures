@@ -2,26 +2,13 @@ local addonName, TimelessTreasures = ...
 TimelessTreasures.points = {}
 local L = TimelessTreasures.L
 
--- our db and defaults
-local db
-local defaults = {
-	profile = {
-		completed = false,
-		icon_scale = 1.4,
-		icon_alpha = 0.8,
-		show_moss = true,
-	}
-}
-
-local points = TimelessTreasures.points
+local default_icon = "Interface\\ICONS\\inv_misc_coin_01" -- (select(10, GetAchievementInfo(8729)))
 
 local moss = L["Moss-Covered Chest"]
 local sturdy = L["Sturdy Chest"]
 local smoldering = L["Smoldering Chest"]
 local skull = L["Skull-Covered Chest"]
 local blazing = L["Blazing Chest"]
-
-local default_icon = (select(10, GetAchievementInfo(8729))) or "Interface\\ICONS\\inv_misc_coin_01"
 
 local criteriaIndex = {
 	[moss] = 1,
@@ -30,6 +17,24 @@ local criteriaIndex = {
 	[skull] = 2,
 	[blazing] = 3,
 }
+
+-- our db and defaults
+local db
+local defaults = {
+	profile = {
+		completed = false,
+		icon_scale = 1.4,
+		icon_alpha = 0.8,
+		show_moss = true,
+		moss_icon = default_icon,
+		sturdy_icon = default_icon,
+		smoldering_icon = default_icon,
+		skull_icon = default_icon,
+		blazing_icon = default_icon,
+	}
+}
+
+local points = TimelessTreasures.points
 
 -- http://www.wowhead.com/achievement=8729/treasure-treasure-everywhere
 -- mapFiles 5th or 1st return of GetMapInfo()
@@ -211,7 +216,7 @@ local function iter(t, prestate)
 	while state do -- have we reached the end of this zone?
 		if value and (db.completed
 			or ((value.type ~= moss or (value.type == moss and db.show_moss)) and not IsQuestFlaggedCompleted(value.quest))) then
-			return state, nil, default_icon, db.icon_scale, db.icon_alpha
+			return state, nil, value.icon or default_icon, db.icon_scale, db.icon_alpha
 		end
 
 		state, value = next(t, state) -- get next data
@@ -237,9 +242,10 @@ local options = {
 		TimelessTreasures:Refresh()
 	end,
 	args = {
-		desc = {
+		desc_1 = {
 			type = "description",
 			name = L["These settings control the visibility and the look of the icons."],
+			fontSize = "medium",
 			order = 1,
 		},
 		completed = {
@@ -274,8 +280,147 @@ local options = {
 			arg = "icon_alpha",
 			order = 10,
 		},
+		desc_2 = {
+			type = "description",
+			name = L["These settings allow you to change the idividual chest icons."],
+			fontSize = "medium",
+			order = 15,
+		},
+		moss_icon = {
+			type = "input",
+			name = moss,
+			desc = L["Change Icon"],
+			set = function(info, value)
+				db.moss_icon = value
+				TimelessTreasures:SetIcons()
+				TimelessTreasures:Refresh()
+			end,
+			get = function(info) return db.moss_icon end,
+			order = 20,
+		},
+		moss_icon_reset = {
+			type = "execute",
+			name = RESET,
+			desc = moss,
+			func = function()
+				db.moss_icon = default_icon
+				TimelessTreasures:SetIcons()
+				TimelessTreasures:Refresh()
+			end,
+			order = 21,
+		},
+		sturdy_icon = {
+			type = "input",
+			name = sturdy,
+			desc = L["Change Icon"],
+			set = function(info, value)
+				db.sturdy_icon = value
+				TimelessTreasures:SetIcons()
+				TimelessTreasures:Refresh()
+			end,
+			get = function(info) return db.sturdy_icon end,
+			order = 22,
+		},
+		sturdy_icon_reset = {
+			type = "execute",
+			name = RESET,
+			desc = smoldering,
+			func = function()
+				db.sturdy_icon = default_icon
+				TimelessTreasures:SetIcons()
+				TimelessTreasures:Refresh()
+			end,
+			order = 23,
+		},
+		smoldering_icon = {
+			type = "input",
+			name = smoldering,
+			desc = L["Change Icon"],
+			set = function(info, value)
+				db.smoldering_icon = value
+				TimelessTreasures:SetIcons()
+				TimelessTreasures:Refresh()
+			end,
+			get = function(info) return db.smoldering_icon end,
+			order = 24,
+		},
+		smoldering_icon_reset = {
+			type = "execute",
+			name = RESET,
+			desc = smoldering,
+			func = function()
+				db.smoldering_icon = default_icon
+				TimelessTreasures:SetIcons()
+				TimelessTreasures:Refresh()
+			end,
+			order = 25,
+		},
+		skull_icon = {
+			type = "input",
+			name = skull,
+			desc = L["Change Icon"],
+			set = function(info, value)
+				db.skull_icon = value
+				TimelessTreasures:SetIcons()
+				TimelessTreasures:Refresh()
+			end,
+			get = function(info) return db.skull_icon end,
+			order = 26,
+		},
+		skull_icon_reset = {
+			type = "execute",
+			name = RESET,
+			desc = skull,
+			func = function()
+				db.skull_icon = default_icon
+				TimelessTreasures:SetIcons()
+				TimelessTreasures:Refresh()
+			end,
+			order = 27,
+		},
+		blazing_icon = {
+			type = "input",
+			name = blazing,
+			desc = L["Change Icon"],
+			set = function(info, value)
+				db.blazing_icon = value
+				TimelessTreasures:SetIcons()
+				TimelessTreasures:Refresh()
+			end,
+			get = function(info) return db.blazing_icon end,
+			order = 28,
+		},
+		blazing_icon_reset = {
+			type = "execute",
+			name = RESET,
+			desc = blazing,
+			func = function()
+				db.blazing_icon = default_icon
+				TimelessTreasures:SetIcons()
+				TimelessTreasures:Refresh()
+			end,
+			order = 29,
+		},
 	},
 }
+
+function TimelessTreasures:SetIcons()
+	for _, info in pairs(points["TimelessIsle"]) do
+		local type = info.type
+		if type == moss then
+			info.icon = db.moss_icon
+		elseif type == sturdy then
+			info.icon = db.sturdy_icon
+		elseif type == smoldering then
+			info.icon = db.smoldering_icon
+		elseif type == skull then
+			info.icon = db.skull_icon
+		else
+			info.icon = db.blazing_icon
+		end
+	end
+	points["CavernofLostSpirits"][62903480].icon = db.skull_icon
+end
 
 
 -- initialise
@@ -284,6 +429,8 @@ function TimelessTreasures:OnEnable()
 	self:RegisterEvent("QUEST_FINISHED", "Refresh")
 
 	db = LibStub("AceDB-3.0"):New("HandyNotes_TimelessTreasuresDB", defaults, "Default").profile
+
+	self:SetIcons()
 end
 
 function TimelessTreasures:Refresh()

@@ -244,7 +244,7 @@ local options = {
 	args = {
 		desc_1 = {
 			type = "description",
-			name = L["These settings control the visibility and the look of the icons."],
+			name = L["These settings control the visibility of the icons."],
 			fontSize = "medium",
 			order = 1,
 		},
@@ -264,13 +264,19 @@ local options = {
 			width = "full",
 			order = 3,
 		},
+		desc_2 = {
+			type = "description",
+			name = L["These settings control the look of the icons."],
+			fontSize = "medium",
+			order = 15,
+		},
 		icon_scale = {
 			type = "range",
 			name = L["Icon Scale"],
 			desc = L["Change the size of the icons."],
 			min = 0.25, max = 2, step = 0.01,
 			arg = "icon_scale",
-			order = 10,
+			order = 16,
 		},
 		icon_alpha = {
 			type = "range",
@@ -278,13 +284,7 @@ local options = {
 			desc = L["Change the transparency of the icons."],
 			min = 0, max = 1, step = 0.01,
 			arg = "icon_alpha",
-			order = 10,
-		},
-		desc_2 = {
-			type = "description",
-			name = L["These settings allow you to change the idividual chest icons."],
-			fontSize = "medium",
-			order = 15,
+			order = 16,
 		},
 		moss_icon = {
 			type = "input",
@@ -428,7 +428,7 @@ function TimelessTreasures:OnEnable()
 	HandyNotes:RegisterPluginDB("TimelessTreasures", self, options)
 	self:RegisterEvent("QUEST_FINISHED", "Refresh")
 
-	db = LibStub("AceDB-3.0"):New("HandyNotes_TimelessTreasuresDB", defaults, "Default").profile
+	db = LibStub("AceDB-3.0"):New("HandyNotes_TimelessTreasuresDB", defaults, true).profile
 
 	self:SetIcons()
 end

@@ -23,8 +23,8 @@ local db
 local defaults = {
 	profile = {
 		completed = false,
-		icon_scale = 1.4,
-		icon_alpha = 0.8,
+		icon_scale = 1.0,
+		icon_alpha = 1.0,
 		show_moss = true,
 		moss_icon = default_icon,
 		sturdy_icon = default_icon,
@@ -296,7 +296,7 @@ local options = {
 			type = "range",
 			name = L["Icon Scale"],
 			desc = L["Change the size of the icons."],
-			min = 0.25, max = 2, step = 0.01,
+			min = 0.3, max = 2, step = 0.1,
 			arg = "icon_scale",
 			order = 16,
 		},
@@ -304,7 +304,7 @@ local options = {
 			type = "range",
 			name = L["Icon Alpha"],
 			desc = L["Change the transparency of the icons."],
-			min = 0, max = 1, step = 0.01,
+			min = 0, max = 1, step = 0.1,
 			arg = "icon_alpha",
 			order = 16,
 		},

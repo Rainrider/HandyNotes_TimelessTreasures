@@ -31,6 +31,7 @@ local defaults = {
 		smoldering_icon = default_icon,
 		skull_icon = default_icon,
 		blazing_icon = default_icon,
+		trim_icons = false,
 	}
 }
 
@@ -105,6 +106,21 @@ local ColorGradient = function(a, b, r1, g1, b1, r2, g2, b2, r3, g3, b3)
 		r1, g1, b1, r2, g2, b2 = select(segment * 3 + 1, r1, g1, b1, r2, g2, b2, r3, g3, b3)
 		return r1 + (r2 - r1) * relperc, g1 + (g2 - g1) * relperc, b1 + (b2 - b1) * relperc
 	end
+end
+
+local trimmedIcons = {}
+local TrimIcon = function(icon)
+	if not trimmedIcons[icon] then
+		trimmedIcons[icon] = {
+			icon = icon,
+            tCoordLeft = 0.1,
+            tCoordRight = 0.9,
+            tCoordTop = 0.1,
+            tCoordBottom = 0.9,
+		}
+	end
+
+	return trimmedIcons[icon]
 end
 
 -- HandyNotes handlers
@@ -216,7 +232,7 @@ local function iter(t, prestate)
 	while state do -- have we reached the end of this zone?
 		if value and (db.completed
 			or ((value.type ~= moss or (value.type == moss and db.show_moss)) and not IsQuestFlaggedCompleted(value.quest))) then
-			return state, nil, value.icon or default_icon, db.icon_scale, db.icon_alpha
+			return state, nil, db.trim_icons and TrimIcon(value.icon or default_icon) or (value.icon or default_icon), db.icon_scale, db.icon_alpha
 		end
 
 		state, value = next(t, state) -- get next data
@@ -268,6 +284,12 @@ local options = {
 			type = "description",
 			name = L["These settings control the look of the icons."],
 			fontSize = "medium",
+			order = 14,
+		},
+		trim_icons = {
+			type = "toggle",
+			name = L["Remove Icon Border"],
+			width = "full",
 			order = 15,
 		},
 		icon_scale = {

@@ -155,11 +155,7 @@ local function CreateWaypoint(button, mapFile, coord)
 	local c, z = HandyNotes:GetCZ(mapFile)
 	local x, y = HandyNotes:getXY(coord)
 
-	if TomTom then
-		TomTom:AddZWaypoint(c, z, x * 100, y * 100, "Timeless Treasure")
-	elseif Cartographer_Waypoints then
-		Cartographer_Waypoints:AddWaypoint( NotePoint:new(HandyNotes:GetCZToZone(c, z), x, y, "Timeless Treasure") )
-	end
+	TomTom:AddZWaypoint(c, z, x * 100, y * 100, "Timeless Treasure")
 end
 
 do
@@ -182,7 +178,7 @@ do
 
 			UIDropDownMenu_AddButton(info, level)
 
-			if TomTom or Cartographer_Waypoints then
+			if TomTom then
 				-- waypoint menu item
 				info.disabled = nil
 				info.isTitle = nil

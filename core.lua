@@ -152,10 +152,13 @@ function TimelessTreasures:OnLeave()
 end
 
 local function CreateWaypoint(button, mapFile, coord)
-	local c, z = HandyNotes:GetCZ(mapFile)
-	local x, y = HandyNotes:getXY(coord)
+	local x = floor(coord / 10000) / 10000 -- 0.xxx
+	local y = (coord % 10000) / 10000
 
-	TomTom:AddZWaypoint(c, z, x * 100, y * 100, "Timeless Treasure")
+	-- TomTom's AddZWaypoint is currently buggy as it relies on Astrolabe's GetMapID which has wrong returns
+	-- HandyNotes returns the correct mapID but it does not have floor information
+	-- also HandyNotes does not return anything when using GetCZ("CavernofLostSpirits")
+	TomTom:AddMFWaypoint(HandyNotes:GetMapFiletoMapID(mapFile), nil, x, y, {title = points[mapFile][coord].type})
 end
 
 do

@@ -448,17 +448,16 @@ end
 -- initialise
 function TimelessTreasures:OnEnable()
 	HandyNotes:RegisterPluginDB("TimelessTreasures", self, options)
-	self:RegisterEvent("QUEST_FINISHED", "Refresh")
+	self:RegisterEvent("QUEST_LOG_UPDATE", "Refresh")
 
 	db = LibStub("AceDB-3.0"):New("HandyNotes_TimelessTreasuresDB", defaults, true).profile
 
 	self:SetIcons()
 end
 
-function TimelessTreasures:Refresh()
-	self:SendMessage("HandyNotes_NotifyUpdate", "TimelessTreasures")
+function TimelessTreasures:Refresh(...)
+	self:SendMessage("HandyNotes_NotifyUpdate", "TimelessTreasures", ...)
 end
 
 -- activate
 TimelessTreasures = LibStub("AceAddon-3.0"):NewAddon(TimelessTreasures, addonName, "AceEvent-3.0")
-

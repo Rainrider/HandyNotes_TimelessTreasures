@@ -82,7 +82,7 @@ localization.esES = {
 	["On a treestump"] = "En el tocón ",
 	["In the shipwreck of Cpt. Zvezdan"] = "En el naufragio del Capitán Zvezdan",
 	["On the top of the cliff. Use the Highwind Albatross"] = "En la cima de la montaña. Usa el Albatros Vientofuerte",
-	["Inside the Mysterious Den. Use one of objects from Legends of the Past"] = "Dentro de Mysterious Den. Utiliza uno de los objetos de \"Leyendas del pasado\" para entrar.", -- Needs review
+	["Inside the Mysterious Den. Use one of objects from Legends of the Past"] = "Dentro de Guarida Misteriosa. Utiliza uno de los objetos de \"Leyendas del pasado\" para entrar.", -- Needs review
 	["Inside Cavern of Lost Spirits (entrance at 43.2, 41.3)"] = "Dentro de la Caverna de los Espíritus Perdidos (entrada en 43.2, 41.3)",
 	-- tooltip
 	["Completed"] = "Completado",

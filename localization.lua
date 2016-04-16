@@ -1,4 +1,4 @@
-local addonName, ns = ...
+local _, ns = ...
 
 local default = {
 	ADDON_NAME = "HandyNotes - Timeless Treasures",
@@ -67,6 +67,40 @@ local localization = {
 		["Change the transparency of the icons."] = "Ändert die Symboltransparenz.",
 		["These settings control the look of the icons."] = "\n\nDiese Einstellungen bestimmen das Aussehen der Symbole.\n\n",
 		["Change Icon"] = "Gebt den vollständigen Pfad für die Textur an \nz.B. |cffFFFF00Interface\\ICONS\\inv_box_01|r",
+	},
+	["esES"] = {
+		ADDON_NAME = "HandyNotes - Tesoros intemporales",
+		NAME = "Tesoros intemporales",
+		-- chests
+		["Moss-Covered Chest"] = "Cofre cubierto de musgo",
+		["Sturdy Chest"] = "Cofre robusto",
+		["Smoldering Chest"] = "Cofre humeante",
+		["Skull-Covered Chest"] = "Cofre adornado de calaveras",
+		["Blazing Chest"] = "Cofre llameante",
+		-- notes
+		["On a treestump"] = "En el tocón ",
+		["In the shipwreck of Cpt. Zvezdan"] = "En el naufragio del Capitán Zvezdan",
+		["On the top of the cliff. Use the Highwind Albatross"] = "En la cima de la montaña. Usa el Albatros Vientofuerte",
+		["Inside the Mysterious Den. Use one of objects from Legends of the Past"] = "Dentro de Mysterious Den. Utiliza uno de los objetos de \"Leyendas del pasado\" para entrar.", -- Needs review
+		["Inside Cavern of Lost Spirits (entrance at 43.2, 41.3)"] = "Dentro de la Caverna de los Espíritus Perdidos (entrada en 43.2, 41.3)",
+		-- tooltip
+		["Completed"] = "Completado",
+		-- buttons
+		["Create waypoint"] = "Crear waypoint",
+		-- options
+		["Timeless Treasures locations."] = "Ubicación de los tesoros intemporales",
+		["These settings control the visibility of the icons."] = "Estos ajustes controlan la visibilidad de los iconos.\n\n",
+		["Show completed"] = "Mostrar completados",
+		["Show icons for treasures you have already got."] = "Mostrar los iconos de los tesoros ya conseguidos",
+		["Show Moss-Covered Chests"] = "Mostrar Cofres cubiertos de musgo",
+		["Show not completed Moss-Covered Chests"] = "Mostrar Cofres cubiertos de musgo sin abrir",
+		["Remove Icon Border"] = "Eliminar bordes del icono",
+		["Icon Scale"] = "Escala de icono",
+		["Change the size of the icons."] = "Cambiar el tamaño de los iconos.",
+		["Icon Alpha"] = "Icono Alpha",
+		["Change the transparency of the icons."] = "Cambiar la transparencia de los iconos",
+		["These settings control the look of the icons."] = "\n\nEstos ajustes controlan el aspecto de los iconos.\n\n",
+		["Change Icon"] = "Introduzca la ruta completa de la textura\nejem. |cffFFFF00Interface\\ICONS\\inv_box_01|r",
 	},
 }
 

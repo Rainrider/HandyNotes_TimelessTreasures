@@ -125,30 +125,24 @@ end
 
 -- HandyNotes handlers
 function TimelessTreasures:OnEnter(mapFile, coord)
-	local tooltip = self:GetParent() == WorldMapButton and WorldMapTooltip or GameTooltip
-
 	if self:GetCenter() > UIParent:GetCenter() then -- compare X coordinate
-		tooltip:SetOwner(self, "ANCHOR_LEFT")
+		GameTooltip:SetOwner(self, "ANCHOR_LEFT")
 	else
-		tooltip:SetOwner(self, "ANCHOR_RIGHT")
+		GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
 	end
 	local info = points[mapFile][coord]
-	tooltip:SetText(info.type)
+	GameTooltip:SetText(info.type)
 	if info.note then
-		tooltip:AddLine(format("|cff00FF00%s|r %s", NOTE_COLON, info.note), 1, 1, 1, true)
+		GameTooltip:AddLine(format("|cff00FF00%s|r %s", NOTE_COLON, info.note), 1, 1, 1, true)
 	end
 	local quantity, requiredQuantity = select(4, GetAchievementCriteriaInfo(8729, criteriaIndex[info.type]))
 	local r, g, b = ColorGradient(quantity, requiredQuantity, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-	tooltip:AddLine(format("|cff00FF00%s:|r %d/%d", L["Completed"], quantity, requiredQuantity), r, g, b)
-	tooltip:Show()
+	GameTooltip:AddLine(format("|cff00FF00%s:|r %d/%d", L["Completed"], quantity, requiredQuantity), r, g, b)
+	GameTooltip:Show()
 end
 
 function TimelessTreasures:OnLeave()
-	if self:GetParent() == WorldMapButton then
-		WorldMapTooltip:Hide()
-	else
-		GameTooltip:Hide()
-	end
+	GameTooltip:Hide()
 end
 
 local function CreateWaypoint(button, mapFile, coord)

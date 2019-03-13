@@ -1,4 +1,4 @@
-## Interface: 70100
+## Interface: 80100
 ## Title: HandyNotes_TimelessTreasures
 ## Notes: Displays the locations of the chests for the Treasure, Treasure Everywhere achievement
 ## Notes-deDE: Zeigt die Orte der Truhen für den Erfolg "Meine Schätze!" an.
@@ -10,4 +10,5 @@
 ## X-Category: Map & Minimap
 
 localization.lua
+data.lua
 core.lua

@@ -52,10 +52,10 @@ local function TrimIcon(icon)
 	if not trimmedIcons[icon] then
 		trimmedIcons[icon] = {
 			icon = icon,
-            tCoordLeft = 0.1,
-            tCoordRight = 0.9,
-            tCoordTop = 0.1,
-            tCoordBottom = 0.9,
+			tCoordLeft = 0.1,
+			tCoordRight = 0.9,
+			tCoordTop = 0.1,
+			tCoordBottom = 0.9,
 		}
 	end
 
@@ -75,12 +75,18 @@ function TimelessTreasures:OnEnter(uiMapID, coord)
 	GameTooltip:SetText(info.type)
 
 	if info.note then
-		GameTooltip:AddLine(format("|cff00FF00%s|r %s", NOTE_COLON, info.note), 1, 1, 1, true)
+		GameTooltip:AddLine(
+			("|cff00FF00%s|r %s"):format(_G.NOTE_COLON, info.note),
+			1, 1, 1, true
+		)
 	end
 
 	local _, _, _, quantity, requiredQuantity = GetAchievementCriteriaInfo(8729, criteriaIndex[info.type])
 	local r, g, b = ColorGradient(quantity, requiredQuantity, 1, 0, 0, 1, 1, 0, 0, 1, 0)
-	GameTooltip:AddLine(format("|cff00FF00%s:|r %d/%d", L["Completed"], quantity, requiredQuantity), r, g, b)
+	GameTooltip:AddLine(
+		("|cff00FF00%s:|r %d/%d"):format(L["Completed"], quantity, requiredQuantity),
+		r, g, b
+	)
 	GameTooltip:Show()
 end
 
@@ -88,7 +94,7 @@ function TimelessTreasures:OnLeave()
 	GameTooltip:Hide()
 end
 
-local function CreateWaypoint(button, uiMapID, coord)
+local function CreateWaypoint(_button, uiMapID, coord)
 	local x, y = HandyNotes:getXY(coord);
 
 	TomTom:AddWaypoint(uiMapID, x, y, {title = points[uiMapID][coord].type})
@@ -101,7 +107,7 @@ do
 
 	local function Close() CloseDropDownMenus() end
 
-	local function GenerateMenu(button, level)
+	local function GenerateMenu(_button, level)
 		if not level then return end
 
 		table.wipe(info)
@@ -132,7 +138,7 @@ do
 			info.disabled = nil
 			info.isTitle = nil
 			info.notCheckable = 1
-			info.text = CLOSE
+			info.text = _G.CLOSE
 			info.icon = nil
 			info.func = Close
 			info.arg1 = nil
@@ -161,9 +167,8 @@ local function iter(zone, prestate)
 	local coords, info = next(zone, prestate)
 
 	while coords do
-		if info and (db.completed or
-			((info.type ~= moss or (db.show_moss and info.type == moss)) and not C_QuestLog.IsQuestFlaggedCompleted(info.quest))
-		) then
+		local showType = info.type ~= moss or db.show_moss and info.type == moss
+		if info and (db.completed or (showType and not C_QuestLog.IsQuestFlaggedCompleted(info.quest))) then
 			local icon = info.icon or default_icon
 			return
 				coords,
@@ -247,17 +252,17 @@ local options = {
 			type = "input",
 			name = moss,
 			desc = L["Change Icon"],
-			set = function(info, value)
+			set = function(_info, value)
 				db.moss_icon = value
 				TimelessTreasures:SetIcons()
 				TimelessTreasures:Refresh()
 			end,
-			get = function(info) return db.moss_icon end,
+			get = function(_info) return db.moss_icon end,
 			order = 20,
 		},
 		moss_icon_reset = {
 			type = "execute",
-			name = RESET,
+			name = _G.RESET,
 			desc = moss,
 			func = function()
 				db.moss_icon = default_icon
@@ -270,17 +275,17 @@ local options = {
 			type = "input",
 			name = sturdy,
 			desc = L["Change Icon"],
-			set = function(info, value)
+			set = function(_info, value)
 				db.sturdy_icon = value
 				TimelessTreasures:SetIcons()
 				TimelessTreasures:Refresh()
 			end,
-			get = function(info) return db.sturdy_icon end,
+			get = function(_info) return db.sturdy_icon end,
 			order = 22,
 		},
 		sturdy_icon_reset = {
 			type = "execute",
-			name = RESET,
+			name = _G.RESET,
 			desc = smoldering,
 			func = function()
 				db.sturdy_icon = default_icon
@@ -293,17 +298,17 @@ local options = {
 			type = "input",
 			name = smoldering,
 			desc = L["Change Icon"],
-			set = function(info, value)
+			set = function(_info, value)
 				db.smoldering_icon = value
 				TimelessTreasures:SetIcons()
 				TimelessTreasures:Refresh()
 			end,
-			get = function(info) return db.smoldering_icon end,
+			get = function(_info) return db.smoldering_icon end,
 			order = 24,
 		},
 		smoldering_icon_reset = {
 			type = "execute",
-			name = RESET,
+			name = _G.RESET,
 			desc = smoldering,
 			func = function()
 				db.smoldering_icon = default_icon
@@ -316,17 +321,17 @@ local options = {
 			type = "input",
 			name = skull,
 			desc = L["Change Icon"],
-			set = function(info, value)
+			set = function(_info, value)
 				db.skull_icon = value
 				TimelessTreasures:SetIcons()
 				TimelessTreasures:Refresh()
 			end,
-			get = function(info) return db.skull_icon end,
+			get = function(_info) return db.skull_icon end,
 			order = 26,
 		},
 		skull_icon_reset = {
 			type = "execute",
-			name = RESET,
+			name = _G.RESET,
 			desc = skull,
 			func = function()
 				db.skull_icon = default_icon
@@ -339,17 +344,17 @@ local options = {
 			type = "input",
 			name = blazing,
 			desc = L["Change Icon"],
-			set = function(info, value)
+			set = function(_info, value)
 				db.blazing_icon = value
 				TimelessTreasures:SetIcons()
 				TimelessTreasures:Refresh()
 			end,
-			get = function(info) return db.blazing_icon end,
+			get = function(_info) return db.blazing_icon end,
 			order = 28,
 		},
 		blazing_icon_reset = {
 			type = "execute",
-			name = RESET,
+			name = _G.RESET,
 			desc = blazing,
 			func = function()
 				db.blazing_icon = default_icon
@@ -379,7 +384,6 @@ function TimelessTreasures:SetIcons()
 		end
 	end
 end
-
 
 -- initialise
 function TimelessTreasures:OnEnable()

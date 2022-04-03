@@ -11,7 +11,7 @@ A HandyNotes plugin to display the location of the chests for the
 - option for toggling visibility of the moss-covered chest icons
 - option for toggling visibility of all chest icons regardless of whether already opened or not
 - achievement progress in the tooltip
-- localization system in-place (currently only german translation though)
+- localization system in-place (currently only German and Spanish translations though)
 
 ## Credits
 

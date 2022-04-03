@@ -8,6 +8,8 @@ ignore = {
 	'212/self', -- unused argument self
 }
 
+files['localization.lua'] = {ignore = {'631'}}
+
 read_globals = {
 	table = {fields = {'wipe'}},
 	C_QuestLog = {fields = {'IsQuestFlaggedCompleted'}},
@@ -16,6 +18,7 @@ read_globals = {
 	'CreateFrame',
 	'GameTooltip',
 	'GetAchievementCriteriaInfo',
+	'GetLocale',
 	'ToggleDropDownMenu',
 	'UIDropDownMenu_AddButton',
 	'UIParent',

@@ -107,8 +107,8 @@ localization.esES = {
 localization.esMX = localization.esES
 
 do
-	for locale, tbl in pairs(localization) do
-		locale = setmetatable(tbl, {__index = default})
+	for _, tbl in pairs(localization) do
+		setmetatable(tbl, {__index = default})
 	end
 end
 
